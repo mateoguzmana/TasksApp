@@ -59,7 +59,7 @@ const List = props => {
               { todo.text }
           </Text>
         </TouchableOpacity>
-        { deleteOrStar() }
+        {deleteOrStar()}
       </View>
     );
   }

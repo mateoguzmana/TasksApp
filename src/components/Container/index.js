@@ -46,7 +46,8 @@ class Container extends Component {
 		if (this.props.wallpaper) {
 			return (
 				<Image style={[this.props.style, styles.picture]}
-						source={this.props.source}
+						//source={this.props.source}
+						source={{uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Solid_grey.svg/2000px-Solid_grey.svg.png"}}
 				>
 					{renderChildren}
 				</Image>
