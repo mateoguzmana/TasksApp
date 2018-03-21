@@ -10,11 +10,10 @@ import logoImg from '../../images/logo.png';
 
 const Logo = props => {
 	return (
-		/* <View style={styles.container}>
+		<View style={styles.container}>
 			<Image source={logoImg} style={styles.image} />
 			<Text style={styles.text}>Tasks App</Text>
-		</View> */
-		<View style={styles.container}></View>
+		</View>
 	);
 }
 

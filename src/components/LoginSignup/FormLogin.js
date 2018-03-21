@@ -37,6 +37,7 @@ const FormLogin = props => {
 				placeholder='Email'
 				autoCapitalize={'none'}
 				returnKeyType={'done'}
+				keyboardType={'email-address'}
 				autoCorrect={false} />
 			<UserInput source={passwordImg}
 				onChangeText={_onChangePasswordLogin}

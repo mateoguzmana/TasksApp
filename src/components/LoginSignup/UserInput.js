@@ -14,9 +14,10 @@ const UserInput = props => {
     secureTextEntry,
     autoCorrect,
     autoCapitalize,
-    returnKeyType,
-		onChangeText,
-		value,
+	returnKeyType,
+	keyboardType,
+	onChangeText,
+	value,
   } = props;
 
   return (
@@ -30,6 +31,7 @@ const UserInput = props => {
 				autoCorrect={autoCorrect}
 				autoCapitalize={autoCapitalize}
 				returnKeyType={returnKeyType}
+				keyboardType={keyboardType}
 				value={value}
 				placeholderTextColor='white'
 				underlineColorAndroid='transparent' />
