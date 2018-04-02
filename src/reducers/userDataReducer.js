@@ -2,6 +2,7 @@ import * as types from '../actions/actionTypes';
 
 const initialState = {
   email: '',
+  admin: false
 };
 
 export default function userDataReducer(state = initialState, action) {

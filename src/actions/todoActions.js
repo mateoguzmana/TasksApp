@@ -2,7 +2,6 @@ import * as types from './actionTypes';
 import { Alert } from 'react-native';
 import firebase, {firebaseRef} from '../firebase';
 
-
 export function fetchTodos(uid) {
   return (dispatch, getState) => {
     const todosRef = firebaseRef.child(`todos/${uid}`);
@@ -28,7 +27,10 @@ export function startAddTodo(text) {
     const todo = {
       text,
       isDone: false,
-      isStarred: false
+      isStarred: false,
+      //startDate: new Date()
+      //endDate
+      //details 
     };
     const todoRef = firebaseRef.child(`todos/${UID}`).push(todo);
 
@@ -191,5 +193,15 @@ export function setVisibilityFilter(filter) {
   return {
     type: types.SET_VISIBILITY_FILTER,
     filter
+  };
+}
+
+export function getUserData(email) {
+  return (dispatch, getState) => {
+    return firebase
+    .database()
+    .ref('users')
+    .orderByChild('email')
+    .equalTo(email)
   };
 }

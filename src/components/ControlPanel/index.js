@@ -98,6 +98,22 @@ const ControlPanel = props => {
           {`${_getTotalTodos()} Total Todos\n`}
         </Text>
       </View>
+       {
+        props.userData.admin ?
+        <View style={styles.adminWrapper}>
+          <Text style={styles.admin}>
+            Admin
+          </Text>
+        </View> 
+        : 
+        null
+      }
+      <View style={styles.headerWrapper}>
+        <Text style={styles.header}>
+          Have a nice day,{'\n'}
+          {props.userData.email}
+        </Text>
+      </View>
       <View style={styles.buttonWrapper}>
         <TouchableOpacity onPress={_onPress}
           activeOpacity={0.7}
@@ -163,6 +179,16 @@ const styles = StyleSheet.create({
   },
   statsLastChild: {
     marginBottom: 10,
+  },
+  adminWrapper: {
+    marginTop: -40,
+    width: DEVICE_WIDTH * 0.6,
+  },
+  admin: {
+    marginTop: 20,
+    color: 'white',
+    fontSize: 14,
+    textAlign: 'center',
   },
   buttonWrapper: {
     flex: 1,

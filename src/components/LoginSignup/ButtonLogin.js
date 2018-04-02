@@ -42,7 +42,8 @@ export default class ButtonLogin extends Component {
 	_onPress() {
 		const { todos, actions, formData, condition } = this.props;
 		const userLogin = actions.startLogin(formData.emailLogin, formData.passwordLogin);
-
+		const getUserData = actions.getUserData(formData.emailLogin);
+		
 		if (condition.isLoading) return;
 
 		actions.changeCondition({ isLoading: true });
@@ -57,7 +58,11 @@ export default class ButtonLogin extends Component {
 
 		userLogin
 			.then(snapshot => {
-				actions.changeUserData({ email: snapshot.email });
+				getUserData.once('value', snap => {
+					let data = snap.val();
+					data = data[snapshot.uid];
+					actions.changeUserData({ email: data.email, admin: data.admin });
+				});
 				actions.deleteAllTodo();
 				actions.fetchTodos(snapshot.uid);
 				Actions.mainScreen();
