@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   adminWrapper: {
-    marginTop: -40,
+    marginTop: -50,
     width: DEVICE_WIDTH * 0.6,
   },
   admin: {
