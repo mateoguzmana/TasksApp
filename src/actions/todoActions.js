@@ -196,12 +196,18 @@ export function setVisibilityFilter(filter) {
   };
 }
 
-export function getUserData(email) {
+export function getUserData(uid) {
   return (dispatch, getState) => {
     return firebase
     .database()
-    .ref('users')
-    .orderByChild('email')
-    .equalTo(email)
+    .ref(`users/${uid}`)
+  };
+}
+
+export function getUsers(uid) {
+  return (dispatch, getState) => {
+    return firebase
+    .database()
+    .ref(`users`)
   };
 }
