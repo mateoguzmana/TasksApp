@@ -3,7 +3,7 @@ import Drawer from 'react-native-drawer'
 import Container from '../Container';
 import AddTodo from '../AddTodo';
 import Visibility from '../Visibility';
-import ListTodo from '../ListTodo';
+import ListUsers from '../ListUsers';
 import MenuScreen from './Menu';
 import TopBar from '../TopBar';
 
@@ -32,7 +32,7 @@ const Main = props =>  {
 					<TopBar onPress={_onPress} />
 					<AddTodo />
 					<Visibility />
-					<ListTodo />
+					<ListUsers />
 				</Container>
 		</Drawer>
 	);

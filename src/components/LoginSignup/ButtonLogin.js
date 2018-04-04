@@ -64,6 +64,7 @@ export default class ButtonLogin extends Component {
 				});
 				actions.deleteAllTodo();
 				actions.fetchTodos(snapshot.uid);
+				actions.fetchUsers();
 				Actions.mainScreen();
 			}, error => {
 				Alert.alert(JSON.stringify(error.message));

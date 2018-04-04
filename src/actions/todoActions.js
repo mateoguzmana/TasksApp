@@ -196,6 +196,29 @@ export function setVisibilityFilter(filter) {
   };
 }
 
+export function fetchUsers() {
+  return (dispatch, getState) => {
+    return firebase
+    .database()
+    .ref(`users`)
+    .orderByChild('email')
+    .on('value', snap => {
+      const users = snap.val();
+      
+      Object.keys(users).map(userId => {
+        const parsedUsers = {
+          id: userId,
+          ...users[userId]
+        };
+
+        console.log("open here")
+
+        dispatch(addUser(parsedUsers));
+      });
+    })
+  };
+}
+
 export function getUserData(uid) {
   return (dispatch, getState) => {
     return firebase
@@ -204,10 +227,9 @@ export function getUserData(uid) {
   };
 }
 
-export function getUsers(uid) {
-  return (dispatch, getState) => {
-    return firebase
-    .database()
-    .ref(`users`)
+export function addUser(payload) {
+  return {
+    type: types.ADD_USER,
+    payload
   };
 }

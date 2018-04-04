@@ -4,6 +4,7 @@ import visibilityFilter from './visibilityFilterReducer';
 import formData from './formReducer';
 import userData from './userDataReducer';
 import condition from './conditionReducer';
+import users from './usersReducer';
 
 const rootReducer = combineReducers({
   todos,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   formData,
   userData,
   condition,
+  users
 });
 
 export default rootReducer;
