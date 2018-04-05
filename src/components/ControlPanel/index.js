@@ -23,6 +23,7 @@ const ControlPanel = props => {
   const _onPress = () => {
     actions.startLogout().then(() => {
       actions.changeUserData({ email: null });
+      actions.removeUsers();
       Actions.loginScreen({ type: ActionConst.RESET });
     }, error => {
       Alert.alert(JSON.stringify(error.message));

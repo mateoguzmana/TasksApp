@@ -9,6 +9,9 @@ const usersReducer = (state = [], action) => {
         ...state
       ];
 
+    case types.REMOVE_USERS:
+      return [];
+
     default:
       return state;
   }

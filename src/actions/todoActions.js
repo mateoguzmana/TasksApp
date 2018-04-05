@@ -231,3 +231,9 @@ export function addUser(payload) {
     payload
   };
 }
+
+export function removeUsers() {
+  return {
+    type: types.REMOVE_USERS
+  };
+}
