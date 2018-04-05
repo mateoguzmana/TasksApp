@@ -24,8 +24,6 @@ class Container extends Component {
 			users
 		} = this.props;
 
-		console.log(todos, users)
-
 		const renderChildren = Array.isArray(children) ?
 			children.map((child, key) => React.cloneElement(child, {
 				key,

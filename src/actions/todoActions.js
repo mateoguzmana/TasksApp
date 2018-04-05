@@ -211,8 +211,6 @@ export function fetchUsers() {
           ...users[userId]
         };
 
-        console.log("open here")
-
         dispatch(addUser(parsedUsers));
       });
     })

@@ -10,8 +10,7 @@ import {
 import List from './List';
 import iconCheck from '../../icons/check.png';
 import iconUncheck from '../../icons/uncheck.png';
-import iconStar from '../../icons/star.png';
-import iconUnStar from '../../icons/unstar.png';
+import iconView from '../../icons/view.png';
 import iconDelete from '../../icons/remove.png';
 
 const UserList = props => {
@@ -21,8 +20,12 @@ const UserList = props => {
     visibilityFilter,
   } = props;
 
+  const viewUser = (id) => {
+    console.log(id);
+  };
+
   const _leftOnPress = (id, isDone) => event => actions.startUpdateTodo(id, 'isDone', !isDone);
-  const _rightOnPress = (id, isStarred) => event => actions.startUpdateTodo(id, 'isStarred', !isStarred);
+  const _rightOnPress = (id) => event => viewUser(id);
   const _onDelete = id => event => actions.startRemoveTodo(id);
   const _textOnPress = (id, text) => event => {
     Actions.editScreen({
@@ -40,8 +43,7 @@ const UserList = props => {
         leftUnactiveIcon={iconUncheck}
         leftActiveIcon={iconCheck}
         rightOnPress={_rightOnPress}
-        rightUnactiveIcon={iconUnStar}
-        rightActiveIcon={iconStar}
+        rightIcon={iconView}
         textOnPress={_textOnPress}
         onDelete={_onDelete}
         iconDelete={iconDelete}
