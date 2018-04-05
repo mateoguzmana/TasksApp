@@ -27,13 +27,14 @@ const List = props => {
   const _renderList = (user, index) => {
     return (
       <View key={index} style={styles.row}>
-        <ButtonIcon
+{/*         <ButtonIcon
           onPress={leftOnPress(user.email, user.email)}
           source={leftActiveIcon}
           style={styles.leftButton}
           width={25}
           height={25}
-        />
+        /> */}
+        <View style={styles.leftButton}></View>
         <TouchableOpacity
           onPress={textOnPress(user.email, user.email)}
           style={styles.textButton}
