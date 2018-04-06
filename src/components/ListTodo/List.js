@@ -1,18 +1,18 @@
-import React, { PropTypes } from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
   Text,
   View,
-  Platform,
-} from 'react-native';
+  Platform
+} from "react-native";
 
-import ButtonIcon from '../Buttons/ButtonIcon';
+import ButtonIcon from "../Buttons/ButtonIcon";
 
 const List = props => {
   const {
-    todos,
     actions,
     visibleTodos,
     leftOnPress,
@@ -23,7 +23,7 @@ const List = props => {
     rightActiveIcon,
     iconDelete,
     onDelete,
-    textOnPress,
+    textOnPress
   } = props;
 
   const _renderList = (todo, index) => {
@@ -33,79 +33,92 @@ const List = props => {
 
     const deleteOrStar = () => {
       if (todo.isDone) {
-        return <ButtonIcon onPress={onDelete(todo.id)}
-                source={iconDelete}
-                style={styles.rightButton}
-                width={25} height={25} />
+        return (
+          <ButtonIcon
+            onPress={onDelete(todo.id)}
+            source={iconDelete}
+            style={styles.rightButton}
+            width={25}
+            height={25}
+          />
+        );
       } else {
-        return <ButtonIcon onPress={rightOnPress(todo.id, todo.isStarred)}
-                source={starredOrNot}
-                style={styles.rightButton}
-                width={25} height={25} />
+        return (
+          <ButtonIcon
+            onPress={rightOnPress(todo.id, todo.isStarred)}
+            source={starredOrNot}
+            style={styles.rightButton}
+            width={25}
+            height={25}
+          />
+        );
       }
-    }
+    };
 
     return (
       <View key={index} style={styles.row}>
-        <ButtonIcon onPress={leftOnPress(todo.id, todo.isDone)}
+        <ButtonIcon
+          onPress={leftOnPress(todo.id, todo.isDone)}
           source={doneOrNot}
           style={styles.leftButton}
-          width={25} height={25} />
-        <TouchableOpacity onPress={textOnPress(todo.id, todo.text)}
+          width={25}
+          height={25}
+        />
+        <TouchableOpacity
+          onPress={textOnPress(todo.id, todo.text)}
           style={styles.textButton}
-          activeOpacity={0.7}>
-          <Text numberOfLines={1}
-            style={textDoneOrNot}>
-              { todo.text }
+          activeOpacity={0.7}
+        >
+          <Text numberOfLines={1} style={textDoneOrNot}>
+            {todo.text}
           </Text>
         </TouchableOpacity>
         {deleteOrStar()}
       </View>
     );
-  }
+  };
 
   return (
-      <ScrollView style={styles.scroll}
-        showsVerticalScrollIndicator={false}>
-        { visibleTodos.map(_renderList) }
-      </ScrollView>
+    <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
+      {visibleTodos.map(_renderList)}
+    </ScrollView>
   );
 };
 
-const marginBottom = (Platform.OS === 'ios') ? 20 : 0;
+const marginBottom = Platform.OS === "ios" ? 20 : 0;
 
 const styles = StyleSheet.create({
   scroll: {
     flex: 1,
-    marginBottom: marginBottom,
+    marginBottom: marginBottom
   },
   textButton: {
-    flex: 1,
+    flex: 1
   },
   textNotDone: {
-    color: 'white',
+    color: "white"
   },
   textDone: {
-    color: 'white',
-    textDecorationLine: 'line-through',
+    color: "white",
+    textDecorationLine: "line-through"
   },
   leftButton: {
-    marginHorizontal: 10,
+    marginHorizontal: 10
   },
   rightButton: {
     marginLeft: 5,
-    marginRight: 10,
+    marginRight: 10
   },
   row: {
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
+    alignItems: "center",
+    justifyContent: "space-between",
+    flexDirection: "row",
     height: 40,
     marginHorizontal: 10,
     marginVertical: 1,
     borderRadius: 2,
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
-  },
+    backgroundColor: "rgba(255, 255, 255, 0.3)"
+  }
 });
 
 List.propTypes = {
@@ -121,7 +134,7 @@ List.propTypes = {
   rightActiveIcon: PropTypes.number.isRequired,
   onDelete: PropTypes.func.isRequired,
   iconDelete: PropTypes.number.isRequired,
-  textOnPress: PropTypes.func.isRequired,
+  textOnPress: PropTypes.func.isRequired
 };
 
 export default List;
