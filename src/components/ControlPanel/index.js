@@ -69,8 +69,9 @@ const ControlPanel = props => {
     return todos.length;
   };
 
-  const _switchAdminMode = () => {
-    actions.changeUserData({ mainScreen: "admin" });
+  const _switchMode = () => {
+    let mode = userData.mainScreen == "admin" ? "user" : "admin";
+    actions.changeUserData({ mainScreen: mode });
   };
 
   return (
@@ -94,9 +95,9 @@ const ControlPanel = props => {
       </View>
       {userData.admin ? (
         <View style={styles.adminWrapper}>
-          <TouchableOpacity onPress={_switchAdminMode}>
+          <TouchableOpacity onPress={_switchMode}>
             <Text style={styles.admin}>
-              Users List
+              {userData.mainScreen == "admin" ? "Tasks List" : "Users List"}
             </Text>
           </TouchableOpacity>
         </View>
