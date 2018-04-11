@@ -11,32 +11,14 @@ import {
 import ButtonIcon from "../Buttons/ButtonIcon";
 
 const List = props => {
-  const {
-    users,
-    actions,
-    leftOnPress,
-    leftUnactiveIcon,
-    leftActiveIcon,
-    rightOnPress,
-    rightIcon,
-    iconDelete,
-    onDelete,
-    textOnPress
-  } = props;
+  const { users, actions, rightOnPress, rightIcon } = props;
 
   const _renderList = (user, index) => {
     return (
       <View key={index} style={styles.row}>
-{/*         <ButtonIcon
-          onPress={leftOnPress(user.email, user.email)}
-          source={leftActiveIcon}
-          style={styles.leftButton}
-          width={25}
-          height={25}
-        /> */}
-        <View style={styles.leftButton}></View>
+        <View style={styles.leftButton} />
         <TouchableOpacity
-          onPress={textOnPress(user.email, user.email)}
+          onPress={rightOnPress(user.id)}
           style={styles.textButton}
           activeOpacity={0.7}
         >
@@ -102,14 +84,8 @@ List.propTypes = {
   style: PropTypes.number,
   users: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
-  leftOnPress: PropTypes.func.isRequired,
-  leftUnactiveIcon: PropTypes.number.isRequired,
-  leftActiveIcon: PropTypes.number.isRequired,
   rightOnPress: PropTypes.func.isRequired,
-  rightIcon: PropTypes.number.isRequired,
-  onDelete: PropTypes.func.isRequired,
-  iconDelete: PropTypes.number.isRequired,
-  textOnPress: PropTypes.func.isRequired
+  rightIcon: PropTypes.number.isRequired
 };
 
 export default List;

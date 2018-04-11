@@ -1,6 +1,6 @@
 import React from "react";
 import { Actions, ActionConst } from "react-native-router-flux";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import List from "./List";
 import iconCheck from "../../icons/check.png";
@@ -9,7 +9,7 @@ import iconView from "../../icons/view.png";
 import iconDelete from "../../icons/remove.png";
 
 const UserList = props => {
-  const { users, actions, userData } = props;
+  const { users, actions } = props;
 
   const _viewUserTodo = id => {
     actions.deleteAllTodo();
@@ -17,30 +17,16 @@ const UserList = props => {
     actions.switchScreen({ mainScreen: "user" });
   };
 
-  const _leftOnPress = (id, isDone) => event =>
-    actions.startUpdateTodo(id, "isDone", !isDone);
   const _rightOnPress = id => event => _viewUserTodo(id);
-  const _onDelete = id => event => actions.startRemoveTodo(id);
-  const _textOnPress = (id, text) => event => {
-    Actions.editScreen({
-      type: ActionConst.PUSH,
-      id,
-      text
-    });
-  };
 
   return (
     <View style={styles.container}>
       <List
         users={users}
-        leftOnPress={_leftOnPress}
         leftUnactiveIcon={iconUncheck}
         leftActiveIcon={iconCheck}
         rightOnPress={_rightOnPress}
         rightIcon={iconView}
-        textOnPress={_textOnPress}
-        onDelete={_onDelete}
-        iconDelete={iconDelete}
         {...props}
       />
     </View>
