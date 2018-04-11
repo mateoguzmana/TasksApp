@@ -96,7 +96,7 @@ const ControlPanel = props => {
         <View style={styles.adminWrapper}>
           <TouchableOpacity onPress={_switchAdminMode}>
             <Text style={styles.admin}>
-              <Text>Admin</Text>
+              Admin
             </Text>
           </TouchableOpacity>
         </View>

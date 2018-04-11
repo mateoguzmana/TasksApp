@@ -1,14 +1,13 @@
-import * as types from '../actions/actionTypes';
+import * as types from "../actions/actionTypes";
 
 const initialState = {
-  email: '',
+  email: "",
   admin: false,
-  mainScreen: ''
+  mainScreen: ""
 };
 
 export default function userDataReducer(state = initialState, action) {
-  switch(action.type) {
-
+  switch (action.type) {
     case types.CHANGE_USER_DATA:
       return Object.assign({}, state, action.payload);
 
@@ -18,5 +17,4 @@ export default function userDataReducer(state = initialState, action) {
     default:
       return state;
   }
-
 }

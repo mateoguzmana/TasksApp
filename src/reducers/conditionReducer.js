@@ -1,17 +1,15 @@
-import * as types from '../actions/actionTypes';
+import * as types from "../actions/actionTypes";
 
 const initialState = {
-  isLoading: false,
-}
+  isLoading: false
+};
 
 export default function conditionReducer(state = initialState, action) {
-  switch(action.type) {
-
+  switch (action.type) {
     case types.CHANGE_CONDITION:
       return Object.assign({}, state, action.payload);
 
     default:
       return state;
   }
-
 }

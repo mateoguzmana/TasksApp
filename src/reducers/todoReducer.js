@@ -1,17 +1,13 @@
-import * as types from '../actions/actionTypes';
+import * as types from "../actions/actionTypes";
 
 const todoReducer = (state = [], action) => {
-  switch(action.type) {
-
+  switch (action.type) {
     case types.ADD_TODO:
-      return [
-        action.payload,
-        ...state
-      ];
+      return [action.payload, ...state];
 
     case types.UPDATE_TODO:
       return state.map(todo => {
-        if(todo.id !== action.id) {
+        if (todo.id !== action.id) {
           return todo;
         }
 
@@ -20,7 +16,7 @@ const todoReducer = (state = [], action) => {
 
     case types.EDIT_TODO:
       return state.map(todo => {
-        if(todo.id !== action.id) {
+        if (todo.id !== action.id) {
           return todo;
         }
 
@@ -29,7 +25,7 @@ const todoReducer = (state = [], action) => {
 
     case types.TOGGLE_STAR_TODO:
       return state.map(todo => {
-        if(todo.id !== action.id) {
+        if (todo.id !== action.id) {
           return todo;
         }
 
@@ -38,7 +34,7 @@ const todoReducer = (state = [], action) => {
 
     case types.TOGGLE_EDIT_TODO:
       return state.map(todo => {
-        if(todo.id !== action.id) {
+        if (todo.id !== action.id) {
           return todo;
         }
 
@@ -63,7 +59,6 @@ const todoReducer = (state = [], action) => {
     default:
       return state;
   }
-
-}
+};
 
 export default todoReducer;

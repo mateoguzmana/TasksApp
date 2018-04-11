@@ -1,13 +1,9 @@
-import * as types from '../actions/actionTypes';
+import * as types from "../actions/actionTypes";
 
 const usersReducer = (state = [], action) => {
-  switch(action.type) {
-
+  switch (action.type) {
     case types.ADD_USER:
-      return [
-        action.payload,
-        ...state
-      ];
+      return [action.payload, ...state];
 
     case types.REMOVE_USERS:
       return [];
@@ -15,7 +11,6 @@ const usersReducer = (state = [], action) => {
     default:
       return state;
   }
-
-}
+};
 
 export default usersReducer;
