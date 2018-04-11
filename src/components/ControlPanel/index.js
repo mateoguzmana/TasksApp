@@ -89,7 +89,7 @@ const ControlPanel = props => {
         <Text style={styles.stats}>{`${_getCompletedTodo()} Completed\n`}</Text>
         <Text style={styles.stats}>{`${_getFavoritedTodo()} Favorited\n`}</Text>
         <Text style={[styles.stats, styles.statsLastChild]}>
-          {`${_getTotalTodos()} Total Todos\n`}
+          {`${_getTotalTodos()} Total Tasks\n`}
         </Text>
       </View>
       {userData.admin ? (
