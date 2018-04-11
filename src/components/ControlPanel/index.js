@@ -70,7 +70,7 @@ const ControlPanel = props => {
   };
 
   const _switchAdminMode = () => {
-    actions.switchScreen({ mainScreen: "admin" });
+    actions.changeUserData({ mainScreen: "admin" });
   };
 
   return (

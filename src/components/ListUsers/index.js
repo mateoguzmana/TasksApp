@@ -14,7 +14,7 @@ const UserList = props => {
   const _viewUserTodo = id => {
     actions.deleteAllTodo();
     actions.fetchTodos(id);
-    actions.switchScreen({ mainScreen: "user" });
+    actions.changeUserData({ mainScreen: "user", userToEdit: id });
   };
 
   const _rightOnPress = id => event => _viewUserTodo(id);

@@ -60,7 +60,7 @@ export default class ButtonLogin extends Component {
 			.then(snapshot => {
 				getUserData(snapshot.uid).on('value', snap => {
 					let data = snap.val();
-					actions.changeUserData({ email: data.email, admin: data.admin });
+					actions.changeUserData({ email: data.email, admin: data.admin, userToEdit: snapshot.uid });
 				});
 				actions.deleteAllTodo();
 				actions.fetchTodos(snapshot.uid);
