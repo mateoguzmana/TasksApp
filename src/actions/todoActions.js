@@ -21,9 +21,9 @@ export function fetchTodos(uid) {
   };
 }
 
-export function startAddTodo(text) {
+export function startAddTodo(userToEdit, text) {
   return (dispatch, getState) => {
-    const UID = firebase.auth().currentUser.uid;
+    const UID = userToEdit || firebase.auth().currentUser.uid;
     const todo = {
       text,
       isDone: false,

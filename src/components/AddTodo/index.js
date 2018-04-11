@@ -8,14 +8,14 @@ import ButtonIcon from "../Buttons/ButtonIcon";
 const DEVICE_WIDTH = Dimensions.get("window").width;
 
 const AddTodo = props => {
-  const { todos, actions, style, userData } = props;
+  const { actions, userData } = props;
 
   let textInput;
   let textValue = "";
 
   const _onSubmitEditing = () => {
     if (textValue.length > 0) {
-      actions.startAddTodo(textValue);
+      actions.startAddTodo(userData.userToEdit, textValue);
     }
     textInput.clear();
   };
