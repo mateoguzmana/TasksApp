@@ -19,7 +19,7 @@ const ControlPanel = props => {
   const _onPress = () => {
     actions.startLogout().then(
       () => {
-        actions.changeUserData({ email: null });
+        actions.changeUserData({ email: null, mainScreen: '' });
         actions.removeUsers();
         Actions.loginScreen({ type: ActionConst.RESET });
       },
