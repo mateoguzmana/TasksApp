@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Actions, ActionConst } from "react-native-router-flux";
 import { StyleSheet, View } from "react-native";
 
@@ -6,7 +7,6 @@ import List from "./List";
 import iconCheck from "../../icons/check.png";
 import iconUncheck from "../../icons/uncheck.png";
 import iconView from "../../icons/view.png";
-import iconDelete from "../../icons/remove.png";
 
 const UserList = props => {
   const { users, actions } = props;
@@ -39,5 +39,10 @@ const styles = StyleSheet.create({
     marginBottom: 10
   }
 });
+
+UserList.propTypes = {
+  users: PropTypes.array,
+  actions: PropTypes.object.isRequired
+};
 
 export default UserList;

@@ -1,60 +1,45 @@
-import React from 'react';
-import { Actions, ActionConst } from 'react-native-router-flux';
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import React from "react";
+import PropTypes from "prop-types";
+import { Actions, ActionConst } from "react-native-router-flux";
+import { StyleSheet, View } from "react-native";
 
-import List from './List';
-import iconCheck from '../../icons/check.png';
-import iconUncheck from '../../icons/uncheck.png';
-import iconStar from '../../icons/star.png';
-import iconUnStar from '../../icons/unstar.png';
-import iconDelete from '../../icons/remove.png';
+import List from "./List";
+import iconCheck from "../../icons/check.png";
+import iconUncheck from "../../icons/uncheck.png";
+import iconStar from "../../icons/star.png";
+import iconUnStar from "../../icons/unstar.png";
+import iconDelete from "../../icons/remove.png";
 
 const TodoList = props => {
-  const {
-    todos,
-    actions,
-    visibilityFilter,
-  } = props;
+  const { todos, actions, visibilityFilter } = props;
 
   const getVisibleTodos = (allTodos, whatFilter) => {
-    switch(whatFilter) {
-      case 'SHOW_ALL':
+    switch (whatFilter) {
+      case "SHOW_ALL":
         return allTodos;
-      case 'SHOW_COMPLETED':
-        return allTodos.filter(
-          t => t.isDone
-        );
-      case 'SHOW_ACTIVE':
-        return allTodos.filter(
-          t => !t.isDone
-        );
-      case 'SHOW_FAVORITE':
-        return allTodos.filter(
-          t => t.isStarred
-        );
+      case "SHOW_COMPLETED":
+        return allTodos.filter(t => t.isDone);
+      case "SHOW_ACTIVE":
+        return allTodos.filter(t => !t.isDone);
+      case "SHOW_FAVORITE":
+        return allTodos.filter(t => t.isStarred);
     }
   };
 
-  const visibleTodos = getVisibleTodos(
-    todos,
-    visibilityFilter
-  );
+  const visibleTodos = getVisibleTodos(todos, visibilityFilter);
 
-  const _leftOnPress = (id, isDone) => event => actions.startUpdateTodo(id, 'isDone', !isDone);
-  const _rightOnPress = (id, isStarred) => event => actions.startUpdateTodo(id, 'isStarred', !isStarred);
+  const _leftOnPress = (id, isDone) => event =>
+    actions.startUpdateTodo(id, "isDone", !isDone);
+  const _rightOnPress = (id, isStarred) => event =>
+    actions.startUpdateTodo(id, "isStarred", !isStarred);
   const _onDelete = id => event => actions.startRemoveTodo(id);
   const _textOnPress = (id, text) => event => {
     Actions.editScreen({
       type: ActionConst.PUSH,
       id,
-      text,
+      text
     });
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -69,7 +54,8 @@ const TodoList = props => {
         textOnPress={_textOnPress}
         onDelete={_onDelete}
         iconDelete={iconDelete}
-        {...props} />
+        {...props}
+      />
     </View>
   );
 };
@@ -77,8 +63,14 @@ const TodoList = props => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: 10,
-  },
+    marginBottom: 10
+  }
 });
+
+TodoList.propTypes = {
+  todos: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+  visibilityFilter: PropTypes.string.isRequired
+};
 
 export default TodoList;
