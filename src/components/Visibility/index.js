@@ -1,12 +1,25 @@
-import React, { Component, PropTypes } from "react";
-import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import React, { Component } from "react";
+import { StyleSheet, View } from "react-native";
 
 import ButtonFilter from "../Buttons/ButtonFilter";
 
 const Visibility = props => {
-  const { todos, actions, visibilityFilter } = props;
+  const { todos, actions, visibilityFilter, userData } = props;
 
-  return (
+  const getFilters = mainScreen => {
+    switch (mainScreen) {
+      case "admin":
+        return <View style={styles.container} />;
+
+      case "user":
+        return filtersTodos;
+
+      default:
+        return filtersTodos;
+    }
+  };
+
+  const filtersTodos = (
     <View style={styles.container}>
       <ButtonFilter
         filter="SHOW_ALL"
@@ -50,6 +63,8 @@ const Visibility = props => {
       </ButtonFilter>
     </View>
   );
+
+  return getFilters(userData.mainScreen);
 };
 
 const styles = StyleSheet.create({
