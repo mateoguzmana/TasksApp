@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as todoActions from '../../actions/todoActions';
-import Signup from '../LoginSignup/Signup';
-import Main from '../Screens/Main';
+import React, { Component, PropTypes } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as todoActions from "../../actions/todoActions";
+import Signup from "../LoginSignup/Signup";
+import Main from "../Screens/Main";
 
 class SignupScreen extends Component {
   render() {
@@ -16,13 +16,13 @@ class SignupScreen extends Component {
 }
 
 SignupScreen.propTypes = {
-  userData: PropTypes.object.isRequired,
+  userData: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
-	return {
-    userData: state.userData,
-	};
+  return {
+    userData: state.userData
+  };
 }
 
 export default connect(mapStateToProps)(SignupScreen);

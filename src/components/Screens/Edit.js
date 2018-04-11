@@ -1,14 +1,13 @@
-import React from 'react';
+import React from "react";
+import Container from "../Container";
+import EditTodo from "../EditTodo";
 
-import Container from '../Container';
-import EditTodo from '../EditTodo';
-
-const EditScreen = props =>  {
-		return (
-				<Container>
-					<EditTodo {...props} />
-				</Container>
-		);
-}
+const EditScreen = props => {
+  return (
+    <Container>
+      <EditTodo {...props} />
+    </Container>
+  );
+};
 
 export default EditScreen;

@@ -1,23 +1,13 @@
-import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Image,
-} from 'react-native';
-import iconSrc from '../../icons/open_menu.png';
+import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import iconSrc from "../../icons/open_menu.png";
 
 const TopBar = props => {
-  const {
-    onPress,
-  } = props;
+  const { onPress } = props;
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>
-        Tasks App
-      </Text>
+      <Text style={styles.title}>Tasks App</Text>
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={onPress}
@@ -27,28 +17,28 @@ const TopBar = props => {
       </TouchableOpacity>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    alignItems: "center",
+    justifyContent: "space-between",
     paddingVertical: 10,
-    flexDirection: 'row',
-    backgroundColor: 'rgba(0,0,0,0.5)'
+    flexDirection: "row",
+    backgroundColor: "rgba(0,0,0,0.5)"
   },
   title: {
-    color: 'white',
+    color: "white",
     marginLeft: 10,
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold"
   },
   button: {
-    marginRight: 10,
+    marginRight: 10
   },
   icon: {
     width: 30,
-    height: 30,
+    height: 30
   }
 });
 
