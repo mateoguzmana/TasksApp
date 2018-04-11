@@ -6,7 +6,20 @@ import ListUsers from "../ListUsers";
 const MainList = props => {
   const { userData } = props;
 
-  return userData.admin ? <ListUsers {...props}/> : <ListTodo {...props}/>;
+  const getMainScreen = mainScreen => {
+    switch (mainScreen) {
+      case "admin":
+        return <ListUsers {...props} />;
+
+      case "user":
+        return <ListTodo {...props} />;
+
+      default:
+        return <ListTodo {...props} />;
+    }
+  };
+
+  return getMainScreen(userData.mainScreen);
 };
 
 MainList.propTypes = {

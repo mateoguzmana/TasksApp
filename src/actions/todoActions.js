@@ -237,3 +237,10 @@ export function removeUsers() {
     type: types.REMOVE_USERS
   };
 }
+
+export function switchScreen(payload) {
+  return {
+    type: types.SWITCH_SCREEN,
+    payload
+  };
+}

@@ -1,39 +1,33 @@
-import React from 'react';
-import { Actions, ActionConst } from 'react-native-router-flux';
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import React from "react";
+import { Actions, ActionConst } from "react-native-router-flux";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 
-import List from './List';
-import iconCheck from '../../icons/check.png';
-import iconUncheck from '../../icons/uncheck.png';
-import iconView from '../../icons/view.png';
-import iconDelete from '../../icons/remove.png';
+import List from "./List";
+import iconCheck from "../../icons/check.png";
+import iconUncheck from "../../icons/uncheck.png";
+import iconView from "../../icons/view.png";
+import iconDelete from "../../icons/remove.png";
 
 const UserList = props => {
-  const {
-    users,
-    actions,
-    visibilityFilter,
-  } = props;
+  const { users, actions, userData } = props;
 
-  const viewUser = (id) => {
-    console.log(id);
+  const _viewUserTodo = id => {
+    actions.deleteAllTodo();
+    actions.fetchTodos(id);
+    actions.switchScreen({ mainScreen: "user" });
   };
 
-  const _leftOnPress = (id, isDone) => event => actions.startUpdateTodo(id, 'isDone', !isDone);
-  const _rightOnPress = (id) => event => viewUser(id);
+  const _leftOnPress = (id, isDone) => event =>
+    actions.startUpdateTodo(id, "isDone", !isDone);
+  const _rightOnPress = id => event => _viewUserTodo(id);
   const _onDelete = id => event => actions.startRemoveTodo(id);
   const _textOnPress = (id, text) => event => {
     Actions.editScreen({
       type: ActionConst.PUSH,
       id,
-      text,
+      text
     });
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -47,7 +41,8 @@ const UserList = props => {
         textOnPress={_textOnPress}
         onDelete={_onDelete}
         iconDelete={iconDelete}
-        {...props} />
+        {...props}
+      />
     </View>
   );
 };
@@ -55,8 +50,8 @@ const UserList = props => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: 10,
-  },
+    marginBottom: 10
+  }
 });
 
 export default UserList;

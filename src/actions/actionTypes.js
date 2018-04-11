@@ -15,3 +15,4 @@ export const CHANGE_USER_DATA = 'CHANGE_USER_DATA';
 export const CHANGE_CONDITION = 'CHANGE_CONDITION';
 export const ADD_USER = 'ADD_USER';
 export const REMOVE_USERS = 'REMOVE_USERS';
+export const SWITCH_SCREEN = 'SWITCH_SCREEN';
