@@ -45,7 +45,7 @@ const ControlPanel = props => {
     let totalCompletedTodo = 0;
 
     todos.map(todo => {
-      if (!todo.isDone) {
+      if (!!todo.isDone) {
         totalCompletedTodo++;
       }
     });
@@ -57,7 +57,7 @@ const ControlPanel = props => {
     let totalFavoritedTodo = 0;
 
     todos.map(todo => {
-      if (!todo.isStarred) {
+      if (!!todo.isStarred) {
         totalFavoritedTodo++;
       }
     });
