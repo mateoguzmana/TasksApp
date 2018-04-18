@@ -32,6 +32,17 @@ const EditTodo = props => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.textInputWrapper}>
+				<TextInput style={styles.titleInput}
+					onChangeText={() => {}}
+					autoCapitalize='none'
+					maxLength={200}
+					autoCorrect={false}
+					multiline={true}
+				>
+						<Text style={styles.text}>{text == 4 ? text : 'Title'}</Text>
+				</TextInput>
+			</View>
+			<View style={styles.textInputWrapper}>
 				<TextInput style={styles.textInput}
 					onChangeText={_onChangeText}
 					autoCapitalize='none'
@@ -68,6 +79,11 @@ const styles = StyleSheet.create({
 	text: {
 		color: 'white',
 		backgroundColor: 'transparent',
+	},
+	titleInput: {
+		height: 30,
+		paddingHorizontal: 10,
+		backgroundColor: 'rgba(0, 0, 0, 0.5)',
 	},
 	btnWrapper: {
 		alignItems: 'flex-end',
