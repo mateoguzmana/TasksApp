@@ -8,12 +8,13 @@ import {
   Image,
   TouchableOpacity
 } from "react-native";
+import Dimensions from "Dimensions";
 import CalendarPicker from "react-native-calendar-picker";
 
 import backIcon from "../../icons/back.png";
 
 const EditTodo = props => {
-  const { todos, actions, id, text } = props;
+  const { todos, actions, id, text, userData } = props;
 
   let textValue = text;
 
@@ -24,6 +25,10 @@ const EditTodo = props => {
   };
 
   const _onChangeText = value => (textValue = value);
+  
+  const _toggleCalendar = () => {
+	actions.changeUserData({ openCalendar: true });
+  };
 
   return (
     <View style={styles.container}>
@@ -51,6 +56,30 @@ const EditTodo = props => {
           <Text style={styles.text}>{text}</Text>
         </TextInput>
       </View>
+      <View style={styles.datesWrapper}>
+        <TextInput
+          style={styles.dateInput}
+          onFocus={_toggleCalendar}
+          onChangeText={() => {}}
+          autoCapitalize="none"
+          maxLength={200}
+          autoCorrect={false}
+          multiline={true}
+        >
+          <Text style={styles.text}>{text == 4 ? text : "date"}</Text>
+        </TextInput>
+        <TextInput
+          style={styles.dateInput}
+          onFocus={_toggleCalendar}
+          onChangeText={() => {}}
+          autoCapitalize="none"
+          maxLength={200}
+          autoCorrect={false}
+          multiline={true}
+        >
+          <Text style={styles.text}>{text == 4 ? text : "date"}</Text>
+        </TextInput>
+      </View>
       <View style={styles.btnWrapper}>
         <TouchableOpacity
           onPress={_onPress}
@@ -60,12 +89,14 @@ const EditTodo = props => {
           <Image source={backIcon} style={styles.image} />
         </TouchableOpacity>
       </View>
-	  <CalendarPicker
-        onDateChange={this.onDateChange}
-      />
+      {userData.openCalendar ? (
+        <CalendarPicker onDateChange={this.onDateChange} />
+      ) : null}
     </View>
   );
 };
+
+const { width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   container: {
@@ -87,6 +118,18 @@ const styles = StyleSheet.create({
   titleInput: {
     height: 30,
     paddingHorizontal: 10,
+    backgroundColor: "rgba(0, 0, 0, 0.5)"
+  },
+  datesWrapper: {
+    flexDirection: "row",
+    marginTop: 20,
+    marginHorizontal: 15
+  },
+  dateInput: {
+    height: 30,
+    width: width * 0.45,
+    paddingHorizontal: 10,
+    marginRight: width * 0.02,
     backgroundColor: "rgba(0, 0, 0, 0.5)"
   },
   btnWrapper: {

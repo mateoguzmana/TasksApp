@@ -4,7 +4,8 @@ const initialState = {
   email: "",
   admin: false,
   mainScreen: "",
-  userToEdit: null
+  userToEdit: null,
+  openCalendar: false
 };
 
 export default function userDataReducer(state = initialState, action) {
