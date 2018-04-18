@@ -5,7 +5,9 @@ const initialState = {
   admin: false,
   mainScreen: "",
   userToEdit: null,
-  openCalendar: false
+  openCalendar: false,
+  startDate: null,
+  endDate: null
 };
 
 export default function userDataReducer(state = initialState, action) {

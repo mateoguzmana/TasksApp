@@ -8,13 +8,14 @@ import {
   Image,
   TouchableOpacity
 } from "react-native";
+import PropTypes from "prop-types";
 import Dimensions from "Dimensions";
 import CalendarPicker from "react-native-calendar-picker";
 
 import backIcon from "../../icons/back.png";
 
 const EditTodo = props => {
-  const { todos, actions, id, text, userData } = props;
+  const { actions, id, text, userData } = props;
 
   let textValue = text;
 
@@ -25,10 +26,33 @@ const EditTodo = props => {
   };
 
   const _onChangeText = value => (textValue = value);
-  
+
   const _toggleCalendar = () => {
-	actions.changeUserData({ openCalendar: true });
+    actions.changeUserData({ openCalendar: true });
   };
+
+  const _onDateChange = (date, type) => {
+    if (type === "END_DATE") {
+      actions.changeUserData({ endDate: date });
+    } else {
+      actions.changeUserData({
+        startDate: date,
+        endDate: null
+      });
+    }
+  };
+
+  const _formatDate = (date) => {
+	let dateObj = new Date(date);
+
+	var month = dateObj.getUTCMonth() + 1;
+	var day = dateObj.getUTCDate();
+	var year = dateObj.getUTCFullYear();
+
+	return year + "/" + month + "/" + day;
+  };
+
+  const { startDate, endDate } = userData;
 
   return (
     <View style={styles.container}>
@@ -66,7 +90,7 @@ const EditTodo = props => {
           autoCorrect={false}
           multiline={true}
         >
-          <Text style={styles.text}>{text == 4 ? text : "date"}</Text>
+          <Text style={styles.text}>{startDate ? _formatDate(startDate) : "Start Date"}</Text>
         </TextInput>
         <TextInput
           style={styles.dateInput}
@@ -77,7 +101,7 @@ const EditTodo = props => {
           autoCorrect={false}
           multiline={true}
         >
-          <Text style={styles.text}>{text == 4 ? text : "date"}</Text>
+          <Text style={styles.text}>{endDate ? _formatDate(endDate) : "End Date"}</Text>
         </TextInput>
       </View>
       <View style={styles.btnWrapper}>
@@ -90,7 +114,10 @@ const EditTodo = props => {
         </TouchableOpacity>
       </View>
       {userData.openCalendar ? (
-        <CalendarPicker onDateChange={this.onDateChange} />
+        <CalendarPicker
+          allowRangeSelection={true}
+          onDateChange={_onDateChange}
+        />
       ) : null}
     </View>
   );
@@ -148,5 +175,13 @@ const styles = StyleSheet.create({
     height: 40
   }
 });
+
+EditTodo.propTypes = {
+  actions: PropTypes.object,
+  visibilityFilter: PropTypes.string,
+  userData: PropTypes.object,
+  id: PropTypes.string,
+  text: PropTypes.string
+};
 
 export default EditTodo;
