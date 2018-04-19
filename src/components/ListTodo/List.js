@@ -65,7 +65,7 @@ const List = props => {
           height={25}
         />
         <TouchableOpacity
-          onPress={textOnPress(todo.id, todo.text)}
+          onPress={textOnPress(todo.id)}
           style={styles.textButton}
           activeOpacity={0.7}
         >

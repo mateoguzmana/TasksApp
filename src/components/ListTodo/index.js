@@ -36,7 +36,7 @@ const TodoList = props => {
 
   const _getTodoData = id => actions.getTodoData(userData.userToEdit, id);
 
-  const _textOnPress = (id, text) => event => {
+  const _textOnPress = (id) => event => {
     _getTodoData(id).on("value", snap => {
       let data = snap.val();
 
@@ -52,8 +52,7 @@ const TodoList = props => {
 
     Actions.editScreen({
       type: ActionConst.PUSH,
-      id,
-      text
+      id
     });
   };
 
