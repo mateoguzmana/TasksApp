@@ -220,6 +220,14 @@ export function getUserData(uid) {
   };
 }
 
+export function getTodoData(UID, id) {
+  return (dispatch, getState) => {
+    return firebase
+    .database()
+    .ref(`todos/${UID}/${id}`)
+  };
+}
+
 export function addUser(payload) {
   return {
     type: types.ADD_USER,

@@ -11,7 +11,7 @@ import iconUnStar from "../../icons/unstar.png";
 import iconDelete from "../../icons/remove.png";
 
 const TodoList = props => {
-  const { todos, actions, visibilityFilter } = props;
+  const { todos, actions, visibilityFilter, userData } = props;
 
   const getVisibleTodos = (allTodos, whatFilter) => {
     switch (whatFilter) {
@@ -33,7 +33,23 @@ const TodoList = props => {
   const _rightOnPress = (id, isStarred) => event =>
     actions.startUpdateTodo(id, "isStarred", !isStarred);
   const _onDelete = id => event => actions.startRemoveTodo(id);
+
+  const _getTodoData = id => actions.getTodoData(userData.userToEdit, id);
+
   const _textOnPress = (id, text) => event => {
+    _getTodoData(id).on("value", snap => {
+      let data = snap.val();
+
+      let { title, description, startDate, endDate } = data;
+
+      actions.changeUserData({
+        title: title,
+        description: description,
+        startDate: startDate,
+        endDate: endDate
+      });
+    });
+
     Actions.editScreen({
       type: ActionConst.PUSH,
       id,

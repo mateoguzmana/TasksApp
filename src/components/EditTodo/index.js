@@ -15,7 +15,7 @@ import CalendarPicker from "react-native-calendar-picker";
 import backIcon from "../../icons/back.png";
 
 const EditTodo = props => {
-  const { actions, id, text, userData } = props;
+  const { actions, id, userData } = props;
 
   const { title, description, startDate, endDate } = userData;
 
@@ -70,7 +70,7 @@ const EditTodo = props => {
           multiline={true}
           onChangeText={title => actions.changeUserData({ title })}
         >
-          <Text style={styles.text}>{text == 4 ? text : "Title"}</Text>
+          <Text style={styles.text}>{title}</Text>
         </TextInput>
       </View>
       <View style={styles.textInputWrapper}>
@@ -83,7 +83,7 @@ const EditTodo = props => {
           multiline={true}
           onChangeText={description => actions.changeUserData({ description })}
         >
-          <Text style={styles.text}>{text}</Text>
+          <Text style={styles.text}>{description}</Text>
         </TextInput>
       </View>
       <View style={styles.labelDatesWrapper}>
