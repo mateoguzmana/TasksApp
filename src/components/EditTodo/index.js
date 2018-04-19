@@ -17,21 +17,27 @@ import backIcon from "../../icons/back.png";
 const EditTodo = props => {
   const { actions, id, text, userData } = props;
 
-  let textValue = text;
+  const { title, description, startDate, endDate } = userData;
 
-  const _onPress = () => {
-    actions.editTodo(id, textValue);
-    actions.startUpdateTodo(id, "text", textValue);
+  const _onSave = () => {
+    let updates = {
+      title: title,
+      description: description,
+      startDate: startDate,
+      endDate: endDate
+    };
+
+    actions.editTodo(id, description);
+    actions.startUpdateTodo(id, updates);
     Actions.mainScreen({ type: ActionConst.RESET });
   };
-
-  const _onChangeText = value => (textValue = value);
 
   const _toggleCalendar = () => {
     actions.changeUserData({ openCalendar: !userData.openCalendar });
   };
 
   const _onDateChange = (date, type) => {
+    date = new Date(date);
     if (type === "END_DATE") {
       actions.changeUserData({ endDate: date });
     } else {
@@ -52,19 +58,17 @@ const EditTodo = props => {
     return year + "/" + month + "/" + day;
   };
 
-  const { startDate, endDate } = userData;
-
   return (
     <View style={styles.container}>
       <View style={styles.textInputWrapper}>
         <Label text="Title" />
         <TextInput
           style={styles.titleInput}
-          onChangeText={() => {}}
           autoCapitalize="none"
           maxLength={200}
           autoCorrect={false}
           multiline={true}
+          onChangeText={title => actions.changeUserData({ title })}
         >
           <Text style={styles.text}>{text == 4 ? text : "Title"}</Text>
         </TextInput>
@@ -73,11 +77,11 @@ const EditTodo = props => {
         <Label text="Description" />
         <TextInput
           style={styles.textInput}
-          onChangeText={_onChangeText}
           autoCapitalize="none"
           maxLength={200}
           autoCorrect={false}
           multiline={true}
+          onChangeText={description => actions.changeUserData({ description })}
         >
           <Text style={styles.text}>{text}</Text>
         </TextInput>
@@ -133,7 +137,7 @@ const EditTodo = props => {
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
-            onPress={_onPress}
+            onPress={_onSave}
             activeOpacity={0.5}
             style={styles.btn}
           >
@@ -147,6 +151,14 @@ const EditTodo = props => {
 
 const Label = props => {
   return <Text style={[styles.label, props.style]}>{props.text}</Text>;
+};
+
+EditTodo.propTypes = {
+  actions: PropTypes.object,
+  visibilityFilter: PropTypes.string,
+  userData: PropTypes.object,
+  id: PropTypes.string,
+  text: PropTypes.string
 };
 
 Label.propTypes = {
@@ -227,17 +239,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 15
   },
   closeCalendarText: {
-	color: "white",
-	fontSize: 15
+    color: "white",
+    fontSize: 15
   }
 });
-
-EditTodo.propTypes = {
-  actions: PropTypes.object,
-  visibilityFilter: PropTypes.string,
-  userData: PropTypes.object,
-  id: PropTypes.string,
-  text: PropTypes.string
-};
 
 export default EditTodo;

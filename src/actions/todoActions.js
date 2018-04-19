@@ -27,10 +27,7 @@ export function startAddTodo(userToEdit, text) {
     const todo = {
       text,
       isDone: false,
-      isStarred: false,
-      //startDate: new Date()
-      //endDate
-      //details 
+      isStarred: false
     };
     const todoRef = firebaseRef.child(`todos/${UID}`).push(todo);
 
@@ -47,12 +44,10 @@ export function startAddTodo(userToEdit, text) {
   };
 }
 
-export function startUpdateTodo(id, key, value) {
+export function startUpdateTodo(id, updates) {
   return (dispatch, getState) => {
     const UID = firebase.auth().currentUser.uid;
     const todoRef = firebaseRef.child(`todos/${UID}/${id}`);
-    let updates = {};
-    updates[key] = value;
 
     dispatch(updateTodo(id, updates));
 

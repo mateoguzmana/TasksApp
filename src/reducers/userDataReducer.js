@@ -6,6 +6,8 @@ const initialState = {
   mainScreen: "",
   userToEdit: null,
   openCalendar: false,
+  title: null,
+  description: null,
   startDate: null,
   endDate: null
 };
