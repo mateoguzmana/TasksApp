@@ -6,7 +6,8 @@ import {
   Text,
   TextInput,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform
 } from "react-native";
 import PropTypes from "prop-types";
 import Dimensions from "Dimensions";
@@ -233,7 +234,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent"
   },
   titleInput: {
-    height: 30,
+    height: 35,
     paddingHorizontal: 10,
     backgroundColor: "rgba(0, 0, 0, 0.5)"
   },
@@ -242,7 +243,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 15
   },
   dateInput: {
-    height: 30,
+    height: 35,
     width: width * 0.45,
     paddingHorizontal: 10,
     marginRight: width * 0.02,
