@@ -176,7 +176,7 @@ const Tag = props => {
   const { currentLang, style, type } = props;
 
   const timeTypes = {
-    1: Tr.warningText[currentLang],
+    1: Tr.dangerText[currentLang],
     2: Tr.successText[currentLang],
     3: Tr.warningText[currentLang]
   };

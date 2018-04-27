@@ -143,6 +143,12 @@ const Translations = {
     sp: "Atención, será cerrada hoy.",
     pt: "Atenção, vai estar fechado hoje."
   },
+  closeCalendar: {
+    en: "Close Calendar",
+    de: "Kalender schließen",
+    sp: "Cerrar Calendario",
+    pt: "Fechar calendário"
+  },
   empty: {
     en: "",
     de: "",
