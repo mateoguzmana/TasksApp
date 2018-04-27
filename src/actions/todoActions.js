@@ -25,7 +25,10 @@ export function startAddTodo(userToEdit, text) {
   return (dispatch, getState) => {
     const UID = userToEdit || firebase.auth().currentUser.uid;
     const todo = {
-      text,
+      title: text,
+      description: "",
+      startDate: "",
+      endDate: "",
       isDone: false,
       isStarred: false
     };

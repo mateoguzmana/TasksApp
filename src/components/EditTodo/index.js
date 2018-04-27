@@ -58,6 +58,22 @@ const EditTodo = props => {
     return year + "/" + month + "/" + day;
   };
 
+  const _verifyDelayedTime = date => {
+    let lastDate = new Date(date);
+    let todaysDate = new Date();
+
+    let timeDiff = todaysDate.getTime() - lastDate.getTime();
+    let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+    if (diffDays > 0) {
+      return 1;
+    } else if (diffDays < 0) {
+      return 2;
+    } else if (diffDays == 0) {
+      return 3;
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.textInputWrapper}>
@@ -145,12 +161,35 @@ const EditTodo = props => {
           </TouchableOpacity>
         )}
       </View>
+      <Tag type={_verifyDelayedTime(endDate)} />
     </View>
   );
 };
 
 const Label = props => {
-  return <Text style={[styles.label, props.style]}>{props.text}</Text>;
+  const { style, text } = props;
+  return <Text style={[styles.label, style]}>{text}</Text>;
+};
+
+const Tag = props => {
+  const timeTypes = {
+    1: "Delayed",
+    2: "Active",
+    3: "Close Today"
+  };
+
+  const color = {
+    1: "rgba(224, 18, 52, 0.9);",
+    2: "rgba(128, 157, 115, 0.9);",
+    3: "rgba(243, 189, 19, 0.9);"
+  };
+  const { style, type } = props;
+
+  return (
+    <View style={[styles.tagsWrapper, { backgroundColor: color[type] }]}>
+      <Text style={[styles.tagText, style]}>{timeTypes[type]}</Text>
+    </View>
+  );
 };
 
 EditTodo.propTypes = {
@@ -163,6 +202,11 @@ EditTodo.propTypes = {
 
 Label.propTypes = {
   text: PropTypes.string.isRequired,
+  style: PropTypes.any
+};
+
+Tag.propTypes = {
+  type: PropTypes.number,
   style: PropTypes.any
 };
 
@@ -241,6 +285,20 @@ const styles = StyleSheet.create({
   closeCalendarText: {
     color: "white",
     fontSize: 15
+  },
+  tagsWrapper: {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: 15,
+    marginTop: 10,
+    height: 30,
+  },
+  tagText: {
+    fontSize: 15,
+    color: "white",
+    textAlign: "center",
+    width: width * 0.92
   }
 });
 

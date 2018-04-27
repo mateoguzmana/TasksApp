@@ -70,7 +70,7 @@ const List = props => {
           activeOpacity={0.7}
         >
           <Text numberOfLines={1} style={textDoneOrNot}>
-            {todo.text}
+            {todo.title}
           </Text>
         </TouchableOpacity>
         {deleteOrStar()}
