@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 
 import UserInput from './UserInput';
+import Tr from "../../data/Translations";
 
 import usernameImg from '../../icons/username.png';
 import passwordImg from '../../icons/password.png';
@@ -18,7 +19,9 @@ const FormSignup = props => {
 		todos,
 		actions,
 		formData,
+		userData
 	} = props;
+	const { currentLang } = userData;
 
 	const _onChangeEmailSignup = value => {
 		actions.changeEmailSignup(value);
@@ -42,7 +45,7 @@ const FormSignup = props => {
 				onChangeText={_onChangePasswordSignup}
 				value={formData.passwordSignup}
 				secureTextEntry={true}
-				placeholder='Password'
+				placeholder={Tr.passwordInput[currentLang]}
 				returnKeyType={'done'}
 				autoCapitalize={'none'}
 				autoCorrect={false} />

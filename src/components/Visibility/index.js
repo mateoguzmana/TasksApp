@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 
 import ButtonFilter from "../Buttons/ButtonFilter";
+import Tr from "../../data/Translations";
 
 const Visibility = props => {
-  const { todos, actions, visibilityFilter, userData } = props;
+  const { userData } = props;
+  const { currentLang } = userData;
 
   const getFilters = mainScreen => {
     switch (mainScreen) {
@@ -29,7 +31,7 @@ const Visibility = props => {
         activeOpacity={0.7}
         {...props}
       >
-        View All
+        {Tr.viewAll[currentLang]}
       </ButtonFilter>
       <ButtonFilter
         filter="SHOW_ACTIVE"
@@ -39,7 +41,7 @@ const Visibility = props => {
         activeOpacity={0.7}
         {...props}
       >
-        Active
+        {Tr.active[currentLang]}
       </ButtonFilter>
       <ButtonFilter
         filter="SHOW_COMPLETED"
@@ -49,7 +51,7 @@ const Visibility = props => {
         activeOpacity={0.7}
         {...props}
       >
-        Completed
+        {Tr.completed[currentLang]}
       </ButtonFilter>
       <ButtonFilter
         filter="SHOW_FAVORITE"
@@ -59,7 +61,7 @@ const Visibility = props => {
         activeOpacity={0.7}
         {...props}
       >
-        Favorite
+        {Tr.favorited[currentLang]}
       </ButtonFilter>
     </View>
   );

@@ -1,13 +1,15 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import iconSrc from "../../icons/open_menu.png";
+import Tr from "../../data/Translations";
 
 const TopBar = props => {
-  const { onPress } = props;
+  const { onPress, userData } = props;
+  const { currentLang } = userData;
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tasks App</Text>
+      <Text style={styles.title}>{Tr.appName[currentLang]}</Text>
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={onPress}

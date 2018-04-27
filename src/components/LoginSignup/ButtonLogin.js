@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import ToSignup from './ToSignup';
+import Tr from "../../data/Translations";
 import spinner from '../../icons/loading.gif';
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
@@ -74,7 +75,8 @@ export default class ButtonLogin extends Component {
 	}
 
 	render() {
-		const { todos, actions, formData, condition } = this.props;
+		const { todos, actions, formData, condition, userData } = this.props;
+		const { currentLang } = userData;
 
 		const changeWidth = this.buttonAnimated.interpolate({
 	    inputRange: [0, 1],
@@ -90,7 +92,7 @@ export default class ButtonLogin extends Component {
 							{condition.isLoading ?
 								<Image source={spinner} style={styles.image} />
 								:
-								<Text style={styles.text}>LOGIN</Text>
+								<Text style={styles.text}>{Tr.loginButton[currentLang]}</Text>
 							}
 					</TouchableOpacity>
 				</Animated.View>

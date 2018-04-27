@@ -3,6 +3,7 @@ import * as types from "../actions/actionTypes";
 const initialState = {
   email: "",
   admin: false,
+  currentLang: "en",
   mainScreen: "",
   userToEdit: null,
   openCalendar: false,

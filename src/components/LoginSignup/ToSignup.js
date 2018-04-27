@@ -1,49 +1,38 @@
-import React, { Component, PropTypes } from 'react';
-import Dimensions from 'Dimensions';
-import {
-	StyleSheet,
-	View,
-	Text,
-	TouchableOpacity,
-} from 'react-native';
-import { Actions, ActionConst } from 'react-native-router-flux';
-
+import React from "react";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { Actions, ActionConst } from "react-native-router-flux";
+import Tr from "../../data/Translations";
 
 const ToSignup = props => {
-	const {
-		todos,
-		actions,
-	} = props;
+  const { userData } = props;
+  const { currentLang } = userData;
 
-	const _onPress = () => {
-		Actions.signupScreen();
-	}
+  const _onPress = () => {
+    Actions.signupScreen();
+  };
 
-	return (
-		<View style={styles.container}>
-			<TouchableOpacity onPress={_onPress} style={styles.button}>
-				<Text style={styles.text}>Create an account</Text>
-			</TouchableOpacity>
-		</View>
-	);
-}
-
-const DEVICE_WIDTH = Dimensions.get('window').width;
-const DEVICE_HEIGHT = Dimensions.get('window').height;
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity onPress={_onPress} style={styles.button}>
+        <Text style={styles.text}>{Tr.toSignupText[currentLang]}</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		marginTop: 15,
-		alignItems: 'center',
-	},
-	button: {
-		alignItems: 'center',
-	},
-	text: {
-		color: 'white',
-		backgroundColor: 'transparent',
-	},
+  container: {
+    flex: 1,
+    marginTop: 15,
+    alignItems: "center"
+  },
+  button: {
+    alignItems: "center"
+  },
+  text: {
+    color: "white",
+    backgroundColor: "transparent"
+  }
 });
 
 export default ToSignup;

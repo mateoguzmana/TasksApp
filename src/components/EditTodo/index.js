@@ -11,13 +11,14 @@ import {
 import PropTypes from "prop-types";
 import Dimensions from "Dimensions";
 import CalendarPicker from "react-native-calendar-picker";
+import Tr from "../../data/Translations";
 
 import backIcon from "../../icons/back.png";
 
 const EditTodo = props => {
   const { actions, id, userData } = props;
 
-  const { title, description, startDate, endDate } = userData;
+  const { title, description, startDate, endDate, currentLang } = userData;
 
   const _onSave = () => {
     let updates = {
@@ -77,7 +78,7 @@ const EditTodo = props => {
   return (
     <View style={styles.container}>
       <View style={styles.textInputWrapper}>
-        <Label text="Title" />
+        <Label text={Tr.title[currentLang]} />
         <TextInput
           style={styles.titleInput}
           autoCapitalize="none"
@@ -90,7 +91,7 @@ const EditTodo = props => {
         </TextInput>
       </View>
       <View style={styles.textInputWrapper}>
-        <Label text="Description" />
+        <Label text={Tr.description[currentLang]} />
         <TextInput
           style={styles.textInput}
           autoCapitalize="none"
@@ -103,8 +104,8 @@ const EditTodo = props => {
         </TextInput>
       </View>
       <View style={styles.labelDatesWrapper}>
-        <Label style={styles.dateLabel} text="Start Date" />
-        <Label style={styles.dateLabel} text="End Date" />
+        <Label style={styles.dateLabel} text={Tr.startDate[currentLang]} />
+        <Label style={styles.dateLabel} text={Tr.endDate[currentLang]} />
       </View>
       <View style={styles.datesWrapper}>
         <TextInput
@@ -117,7 +118,7 @@ const EditTodo = props => {
           multiline={true}
         >
           <Text style={styles.text}>
-            {startDate ? _formatDate(startDate) : "Start Date"}
+            {startDate ? _formatDate(startDate) : Tr.startDate[currentLang]}
           </Text>
         </TextInput>
         <TextInput
@@ -130,7 +131,7 @@ const EditTodo = props => {
           multiline={true}
         >
           <Text style={styles.text}>
-            {endDate ? _formatDate(endDate) : "End Date"}
+            {endDate ? _formatDate(endDate) : Tr.endDate[currentLang]}
           </Text>
         </TextInput>
       </View>
@@ -149,7 +150,7 @@ const EditTodo = props => {
             activeOpacity={0.5}
             style={styles.closeCalendarBtn}
           >
-            <Text style={styles.closeCalendarText}>Close Calendar</Text>
+            <Text style={styles.closeCalendarText}>{Tr.closeCalendar[currentLang]}</Text>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
@@ -161,7 +162,7 @@ const EditTodo = props => {
           </TouchableOpacity>
         )}
       </View>
-      <Tag type={_verifyDelayedTime(endDate)} />
+      <Tag type={_verifyDelayedTime(endDate)} currentLang={currentLang}/>
     </View>
   );
 };
@@ -172,10 +173,12 @@ const Label = props => {
 };
 
 const Tag = props => {
+  const { currentLang, style, type } = props;
+
   const timeTypes = {
-    1: "Delayed",
-    2: "Active",
-    3: "Close Today"
+    1: Tr.warningText[currentLang],
+    2: Tr.successText[currentLang],
+    3: Tr.warningText[currentLang]
   };
 
   const color = {
@@ -183,7 +186,6 @@ const Tag = props => {
     2: "rgba(128, 157, 115, 0.9);",
     3: "rgba(243, 189, 19, 0.9);"
   };
-  const { style, type } = props;
 
   return (
     <View style={[styles.tagsWrapper, { backgroundColor: color[type] }]}>
@@ -207,7 +209,8 @@ Label.propTypes = {
 
 Tag.propTypes = {
   type: PropTypes.number,
-  style: PropTypes.any
+  style: PropTypes.any,
+  currentLang: PropTypes.string
 };
 
 const { width } = Dimensions.get("window");

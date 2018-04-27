@@ -11,15 +11,18 @@ import {
   Image,
   Platform
 } from "react-native";
+import Languages from "../Languages";
+import Tr from "../../data/Translations";
 import logoSrc from "../../images/logo.png";
 
 const ControlPanel = props => {
   const { todos, actions, userData } = props;
+  const { currentLang } = userData;
 
   const _onPress = () => {
     actions.startLogout().then(
       () => {
-        actions.changeUserData({ email: null, mainScreen: '' });
+        actions.changeUserData({ email: null, mainScreen: "" });
         actions.removeUsers();
         Actions.loginScreen({ type: ActionConst.RESET });
       },
@@ -77,44 +80,40 @@ const ControlPanel = props => {
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={logoSrc} />
-      <Text style={styles.logoDescription}>Tasks App</Text>
+      <Text style={styles.logoDescription}>{Tr.appName[currentLang]}</Text>
       <View style={styles.headerWrapper}>
         <Text style={styles.header}>
-          Have a nice day,{"\n"}
+          {Tr.welcomeText[currentLang]}{"\n"}
           {props.userData.email}
         </Text>
       </View>
       <View style={styles.statsWrapper}>
-        <Text style={styles.statsHeader}>Statistics</Text>
-        <Text style={styles.stats}>{`${_getActiveTodo()} Active\n`}</Text>
-        <Text style={styles.stats}>{`${_getCompletedTodo()} Completed\n`}</Text>
-        <Text style={styles.stats}>{`${_getFavoritedTodo()} Favorited\n`}</Text>
+        <Text style={styles.statsHeader}>{Tr.statistics[currentLang]}</Text>
+        <Text style={styles.stats}>{`${_getActiveTodo()} ${Tr.active[currentLang]}\n`}</Text>
+        <Text style={styles.stats}>{`${_getCompletedTodo()} ${Tr.completed[currentLang]}\n`}</Text>
+        <Text style={styles.stats}>{`${_getFavoritedTodo()} ${Tr.favorited[currentLang]}\n`}</Text>
         <Text style={[styles.stats, styles.statsLastChild]}>
-          {`${_getTotalTodos()} Total Tasks\n`}
+          {`${_getTotalTodos()} ${Tr.totalTasks[currentLang]}\n`}
         </Text>
       </View>
       {userData.admin ? (
         <View style={styles.adminWrapper}>
           <TouchableOpacity onPress={_switchMode}>
             <Text style={styles.admin}>
-              {userData.mainScreen == "admin" ? "Tasks List" : "Users List"}
+              {userData.mainScreen == "admin" ? Tr.tasksList[currentLang] : Tr.usersList[currentLang]}
             </Text>
           </TouchableOpacity>
         </View>
       ) : null}
-      <View style={styles.headerWrapper}>
-        <Text style={styles.header}>
-          Have a nice day,{"\n"}
-          {props.userData.email}
-        </Text>
-      </View>
+      <View style={styles.headerWrapper} />
+      <Languages {...props} />
       <View style={styles.buttonWrapper}>
         <TouchableOpacity
           onPress={_onPress}
           activeOpacity={0.7}
           style={styles.buttonLogout}
         >
-          <Text style={styles.logoutText}>LOGOUT</Text>
+          <Text style={styles.logoutText}>{Tr.logout[currentLang]}</Text>
         </TouchableOpacity>
       </View>
     </View>

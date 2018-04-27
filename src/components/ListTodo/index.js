@@ -85,7 +85,8 @@ const styles = StyleSheet.create({
 TodoList.propTypes = {
   todos: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
-  visibilityFilter: PropTypes.string.isRequired
+  visibilityFilter: PropTypes.string.isRequired,
+  userData: PropTypes.object
 };
 
 export default TodoList;
