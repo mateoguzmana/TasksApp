@@ -47,3 +47,5 @@ android/app/libs
 
 # Temp files that will be shown
 README.md
+
+package-lock.json
