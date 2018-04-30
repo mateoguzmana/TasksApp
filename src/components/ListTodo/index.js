@@ -29,14 +29,14 @@ const TodoList = props => {
   const visibleTodos = getVisibleTodos(todos, visibilityFilter);
 
   const _leftOnPress = (id, isDone) => event =>
-    actions.startUpdateTodo(id, "isDone", !isDone);
+    actions.startUpdateTodo(id, { isDone: !isDone });
   const _rightOnPress = (id, isStarred) => event =>
-    actions.startUpdateTodo(id, "isStarred", !isStarred);
+    actions.startUpdateTodo(id, { isStarred: !isStarred });
   const _onDelete = id => event => actions.startRemoveTodo(id);
 
   const _getTodoData = id => actions.getTodoData(userData.userToEdit, id);
 
-  const _textOnPress = (id) => event => {
+  const _textOnPress = id => event => {
     _getTodoData(id).on("value", snap => {
       let data = snap.val();
 

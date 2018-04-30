@@ -56,7 +56,7 @@ const Translations = {
   completed: {
     en: "Completed",
     de: "Abgeschlossen",
-    sp: "Complatadas",
+    sp: "Completadas",
     pt: "Concluído"
   },
   favorited: {
