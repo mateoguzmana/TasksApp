@@ -7,7 +7,7 @@ import {
   TextInput,
   Image,
   TouchableOpacity,
-  Platform
+  ScrollView
 } from "react-native";
 import PropTypes from "prop-types";
 import Dimensions from "Dimensions";
@@ -77,7 +77,7 @@ const EditTodo = props => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.textInputWrapper}>
         <Label text={Tr.title[currentLang]} />
         <TextInput
@@ -111,12 +111,12 @@ const EditTodo = props => {
       <View style={styles.datesWrapper}>
         <TextInput
           style={styles.dateInput}
-          onFocus={_toggleCalendar}
-          onChangeText={() => {}}
+          onTouchStart={_toggleCalendar}
           autoCapitalize="none"
           maxLength={200}
           autoCorrect={false}
           multiline={true}
+          editable={false}
         >
           <Text style={styles.text}>
             {startDate ? _formatDate(startDate) : Tr.startDate[currentLang]}
@@ -124,12 +124,12 @@ const EditTodo = props => {
         </TextInput>
         <TextInput
           style={styles.dateInput}
-          onFocus={_toggleCalendar}
-          onChangeText={() => {}}
+          onTouchStart={_toggleCalendar}
           autoCapitalize="none"
           maxLength={200}
           autoCorrect={false}
           multiline={true}
+          editable={false}
         >
           <Text style={styles.text}>
             {endDate ? _formatDate(endDate) : Tr.endDate[currentLang]}
@@ -164,7 +164,7 @@ const EditTodo = props => {
         )}
       </View>
       <Tag type={_verifyDelayedTime(endDate)} currentLang={currentLang}/>
-    </View>
+    </ScrollView>
   );
 };
 
