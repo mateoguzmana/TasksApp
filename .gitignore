@@ -45,7 +45,4 @@ buck-out/
 android/app/libs
 *.keystore
 
-# Temp files that will be shown
-README.md
-
 package-lock.json
